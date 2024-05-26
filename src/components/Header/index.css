@@ -1,0 +1,33 @@
+.BgHeader {
+  min-height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.WebsiteLogo {
+  height: 33px;
+  width: 120px;
+  padding: 15px;
+}
+.Btn {
+  color: white;
+  background-color: #2563eb;
+  border: 0px;
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .WebsiteLogo {
+    padding: 20px;
+    height: 80px;
+    width: 200px;
+  }
+}

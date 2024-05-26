@@ -1,0 +1,46 @@
+.BgNf {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.NfImg {
+  height: 210px;
+  width: 250px;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+.NfHead {
+  color: #475569;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px;
+  margin-bottom: 5px;
+}
+
+.NfPara {
+  color: #7b8794;
+  font-size: 15px;
+  margin: 0px;
+}
+
+@media (min-width: 768px) {
+  .NfImg {
+    height: 460px;
+    width: 550px;
+    margin-bottom: 20px;
+  }
+
+  .NfHead {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  .NfPara {
+    font-size: 20px;
+  }
+}

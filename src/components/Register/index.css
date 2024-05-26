@@ -1,0 +1,112 @@
+.BgReg {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.RegCont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
+.RegImg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+}
+
+.RegForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.RegHead {
+  color: #475569;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+.InputCont {
+  display: flex;
+  flex-direction: column;
+}
+
+.InputLabel {
+  text-align: left;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0px;
+  margin-bottom: 5px;
+}
+
+.InputBox {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: transparent;
+}
+
+.RegBtn {
+  color: white;
+  background-color: #3b82f6;
+  border: 0px;
+  border-radius: 5px;
+  height: 40px;
+  width: 130px;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.ErrorMsg {
+  color: #ff0b37;
+  font-size: 13px;
+  margin: 0px;
+}
+
+@media (min-width: 768px) {
+  .RegCont {
+    width: 75%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .RegImg {
+    height: 370px;
+    width: 370px;
+  }
+
+  .RegHead {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 992px) {
+  .RegImg {
+    height: 450px;
+    width: 450px;
+  }
+
+  .RegHead {
+    font-size: 55px;
+  }
+
+  .InputLabel {
+    font-size: 15px;
+  }
+}
