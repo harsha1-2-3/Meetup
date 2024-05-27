@@ -1,16 +1,15 @@
-import './index.css'
+import {BgNf, NfImg, NfHead, NfPara} from './styledComponents'
 
 const NotFound = () => (
-  <div className="BgNf">
-    <img
-      className="NfImg"
+  <BgNf>
+    <NfImg
       src="https://assets.ccbp.in/frontend/react-js/meetup/not-found-img.png"
       alt="not found"
     />
-    <h1 className="NfHead">Page Not Found</h1>
-    <p className="NfPara">
+    <NfHead>Page Not Found</NfHead>
+    <NfPara className="NfPara">
       We are sorry, the you requested could not be found.
-    </p>
-  </div>
+    </NfPara>
+  </BgNf>
 )
 export default NotFound

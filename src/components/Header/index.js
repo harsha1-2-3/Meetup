@@ -1,13 +1,12 @@
-import './index.css'
+import {BgHeader, WebsiteLogo} from './styledComponents'
 
 const Header = () => (
-  <div className="BgHeader">
-    <img
-      className="WebsiteLogo"
+  <BgHeader>
+    <WebsiteLogo
       src="https://assets.ccbp.in/frontend/react-js/meetup/website-logo-img.png"
       alt="website logo"
     />
-  </div>
+  </BgHeader>
 )
 
 export default Header

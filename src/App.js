@@ -6,20 +6,41 @@ import NotFound from './components/NotFound'
 import MeetupContext from './context/MeetupContext'
 import './App.css'
 
+const topicsList = [
+  {
+    id: 'ARTS_AND_CULTURE',
+    displayText: 'Arts and Culture',
+  },
+  {
+    id: 'CAREER_AND_BUSINESS',
+    displayText: 'Career and Business',
+  },
+  {
+    id: 'EDUCATION_AND_LEARNING',
+    displayText: 'Education and Learning',
+  },
+  {
+    id: 'FASHION_AND_BEAUTY',
+    displayText: 'Fashion and Beauty',
+  },
+  {
+    id: 'GAMES',
+    displayText: 'Games',
+  },
+]
+
 class App extends Component {
   state = {
-    userName: localStorage.getItem('userName') || '',
-    userTopic: localStorage.getItem('userTopic') || '',
+    userName: '',
+    userTopic: topicsList[0].displayText,
   }
 
   onChangeName = userName => {
     this.setState({userName})
-    localStorage.setItem('userName', userName)
   }
 
   onChangeTopic = userTopic => {
     this.setState({userTopic})
-    localStorage.setItem('userTopic', userTopic)
   }
 
   render() {
@@ -30,6 +51,7 @@ class App extends Component {
         value={{
           userName,
           userTopic,
+          topicsList,
           onChangeTopic: this.onChangeTopic,
           onChangeName: this.onChangeName,
         }}

@@ -2,30 +2,19 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Header from '../Header'
 import MeetupContext from '../../context/MeetupContext'
-import './index.css'
-
-const topicsList = [
-  {
-    id: 'ARTS_AND_CULTURE',
-    displayText: 'Arts and Culture',
-  },
-  {
-    id: 'CAREER_AND_BUSINESS',
-    displayText: 'Career and Business',
-  },
-  {
-    id: 'EDUCATION_AND_LEARNING',
-    displayText: 'Education and Learning',
-  },
-  {
-    id: 'FASHION_AND_BEAUTY',
-    displayText: 'Fashion and Learning',
-  },
-  {
-    id: 'GAMES',
-    displayText: 'Games',
-  },
-]
+import {
+  BgReg,
+  RegCont,
+  RegImg,
+  RegForm,
+  RegHead,
+  InputCont,
+  InputLabel,
+  InputBox,
+  InputBoxSelect,
+  RegBtn,
+  ErrorMsg,
+} from './styledComponents'
 
 class Register extends Component {
   state = {
@@ -45,13 +34,11 @@ class Register extends Component {
     Cookies.set('jwt_token', jwtToken, {expires: 30})
     onChangeName(userName)
     onChangeTopic(userTopic)
-    localStorage.setItem('userName', userName)
-    localStorage.setItem('userTopic', userTopic)
     const {history} = this.props
     history.replace('/')
   }
 
-  changeTopic = event => {
+  changeTopic = (event, topicsList) => {
     const optionId = event.target.value
     const userOptionObj = topicsList.find(each => each.id === optionId)
     const userOptionText = userOptionObj.displayText
@@ -65,23 +52,23 @@ class Register extends Component {
 
   render() {
     const {userTopic, userName, showErr} = this.state
+    console.log('Rendered:', {userTopic, userName})
 
     return (
       <MeetupContext.Consumer>
         {value => {
-          const {onChangeTopic, onChangeName} = value
+          const {onChangeTopic, onChangeName, topicsList} = value
 
           return (
             <>
               <Header />
-              <div className="BgReg">
-                <div className="RegCont">
-                  <img
-                    className="RegImg"
+              <BgReg>
+                <RegCont>
+                  <RegImg
                     src="https://assets.ccbp.in/frontend/react-js/meetup/website-register-img.png"
                     alt="website register"
                   />
-                  <form
+                  <RegForm
                     onSubmit={event =>
                       this.onClickRegisterNow(
                         event,
@@ -89,30 +76,23 @@ class Register extends Component {
                         onChangeTopic,
                       )
                     }
-                    className="RegForm"
                   >
-                    <h1 className="RegHead">Let us join</h1>
-                    <div className="InputCont">
-                      <label className="InputLabel" htmlFor="name">
-                        NAME
-                      </label>
-                      <input
+                    <RegHead>Let us join</RegHead>
+                    <InputCont>
+                      <InputLabel htmlFor="name">NAME</InputLabel>
+                      <InputBox
                         onChange={this.changeName}
                         value={userName}
                         placeholder="Your name"
-                        className="InputBox"
                         type="text"
                         id="name"
                       />
-                    </div>
-                    <div className="InputCont">
-                      <label className="InputLabel" htmlFor="topic">
-                        TOPICS
-                      </label>
-                      <select
-                        onChange={this.changeTopic}
+                    </InputCont>
+                    <InputCont>
+                      <InputLabel htmlFor="topic">TOPICS</InputLabel>
+                      <InputBoxSelect
+                        onChange={event => this.changeTopic(event, topicsList)}
                         value={userTopic}
-                        className="InputBox"
                         id="topic"
                       >
                         {topicsList.map(eachOption => (
@@ -120,17 +100,17 @@ class Register extends Component {
                             {eachOption.displayText}
                           </option>
                         ))}
-                      </select>
-                    </div>
-                    <button type="submit" className="RegBtn">
-                      Register Now
-                    </button>
+                      </InputBoxSelect>
+                    </InputCont>
+                    <RegBtn type="submit">Register Now</RegBtn>
                     {showErr && (
-                      <p className="ErrorMsg">Please enter your name</p>
+                      <ErrorMsg className="ErrorMsg">
+                        Please enter your name
+                      </ErrorMsg>
                     )}
-                  </form>
-                </div>
-              </div>
+                  </RegForm>
+                </RegCont>
+              </BgReg>
             </>
           )
         }}
