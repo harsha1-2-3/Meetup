@@ -1,109 +1,80 @@
 import styled from 'styled-components'
 
-export const BgReg = styled.div`
-  min-height: 90vh;
+export const RegisterContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-`
-export const RegCont = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 80%;
-  @media (min-width: 768px) {
-    width: 75%;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-`
-export const RegImg = styled.img`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  width: 200px;
-  @media (min-width: 768px) {
-    height: 370px;
-    width: 370px;
-  }
-  @media (min-width: 992px) {
-    height: 450px;
-    width: 450px;
-  }
+  min-height: 80vh;
 `
 
-export const RegForm = styled.form`
-  display: flex;
-  flex-direction: column;
+export const RegisterImg = styled.img`
+  height: 400px;
+  width: 400px;
 `
 
-export const RegHead = styled.h1`
-  color: #475569;
-  font-size: 25px;
-  font-weight: bold;
-  margin: 0px;
-  margin-bottom: 10px;
-  @media (min-width: 768px) {
-    font-size: 40px;
-  }
-  @media (min-width: 992px) {
-    font-size: 55px;
-  }
-`
-export const InputCont = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 `
-export const InputLabel = styled.label`
-  text-align: left;
-  color: #64748b;
-  font-size: 13px;
+export const RegisterHeading = styled.h1`
+  color: #334155;
+  font-size: 32px;
+  font-family: 'Roboto';
+`
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`
+
+export const Label = styled.label`
+  color: #7b8794;
+  font-size: 14px;
+  font-family: 'Roboto';
   font-weight: bold;
-  margin: 0px;
   margin-bottom: 5px;
-  @media (min-width: 768px) {
-    font-size: 15px;
-  }
 `
 
-export const InputBox = styled.input`
-  padding: 10px;
+export const Input = styled.input`
   border: 1px solid #cbd5e1;
-  cursor: pointer;
+  width: 350px;
+  padding: 15px;
+  color: #000000;
+  font-family: 'Roboto';
   outline: none;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  background-color: transparent;
+  margin-bottom: 8px;
 `
 
-export const InputBoxSelect = styled.select`
-  padding: 10px;
+export const Select = styled.select`
   border: 1px solid #cbd5e1;
-  cursor: pointer;
+  width: 350px;
+  padding: 15px;
+  color: #000000;
+  font-family: 'Roboto';
   outline: none;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  background-color: transparent;
+  margin-bottom: 8px;
 `
 
-export const RegBtn = styled.button`
-  color: white;
+export const RegisterButton = styled.button`
   background-color: #3b82f6;
-  border: 0px;
-  border-radius: 5px;
-  height: 40px;
-  width: 130px;
-  cursor: pointer;
-  text-align: center;
+  color: #ffffff;
+  font-family: 'Roboto';
+  border: none;
   outline: none;
-  font-weight: bold;
-  margin-top: 10px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 6px;
+  margin-top: 20px;
 `
 export const ErrorMsg = styled.p`
   color: #ff0b37;
-  font-size: 13px;
-  margin: 0px;
+  font-size: 16px;
+  font-family: 'Roboto';
 `
+
+export default RegisterContainer

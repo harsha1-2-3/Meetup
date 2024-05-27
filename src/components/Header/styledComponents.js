@@ -1,21 +1,13 @@
 import styled from 'styled-components'
 
-export const BgHeader = styled.div`
-  min-height: 10vh;
+export const Nav = styled.nav`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  min-height: 10vh;
   padding: 20px;
 `
-
-export const WebsiteLogo = styled.img`
-  height: 33px;
-  width: 120px;
-  padding: 15px;
-  @media (min-width: 768px) {
-    padding: 20px;
-    height: 80px;
-    width: 200px;
-  }
+export const Logo = styled.img`
+  height: 50px;
+  width: 150px;
 `

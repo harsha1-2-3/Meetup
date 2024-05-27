@@ -1,9 +1,13 @@
 import {Component} from 'react'
-import {Switch, Route, Redirect} from 'react-router-dom'
-import Home from './components/Home'
+
+import {Route, Switch} from 'react-router-dom'
 import Register from './components/Register'
+import Home from './components/Home'
+
 import NotFound from './components/NotFound'
-import MeetupContext from './context/MeetupContext'
+
+import RegisterContext from './context/RegisterContext'
+
 import './App.css'
 
 const topicsList = [
@@ -21,7 +25,7 @@ const topicsList = [
   },
   {
     id: 'FASHION_AND_BEAUTY',
-    displayText: 'Fashion and Beauty',
+    displayText: 'Fashion and Learning',
   },
   {
     id: 'GAMES',
@@ -31,38 +35,49 @@ const topicsList = [
 
 class App extends Component {
   state = {
-    userName: '',
-    userTopic: topicsList[0].displayText,
+    name: '',
+    topic: 'Arts and Culture',
+    isRegistered: false,
+    showError: false,
   }
 
-  onChangeName = userName => {
-    this.setState({userName})
+  changeName = name => {
+    this.setState({name})
   }
 
-  onChangeTopic = userTopic => {
-    this.setState({userTopic})
+  changeTopic = topic => {
+    this.setState({topic})
+  }
+
+  registerName = () => {
+    this.setState({isRegistered: true})
+  }
+
+  updateError = () => {
+    this.setState({showError: true})
   }
 
   render() {
-    const {userTopic, userName} = this.state
-
+    const {name, topic, isRegistered, showError} = this.state
     return (
-      <MeetupContext.Provider
+      <RegisterContext.Provider
         value={{
-          userName,
-          userTopic,
-          topicsList,
-          onChangeTopic: this.onChangeTopic,
-          onChangeName: this.onChangeName,
+          name,
+          topic,
+          isRegistered,
+          showError,
+          changeName: this.changeName,
+          changeTopic: this.changeTopic,
+          registerName: this.registerName,
+          updateError: this.updateError,
         }}
       >
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/bad-path" component={NotFound} />
-          <Redirect to="/bad-path" />
+          <NotFound />
         </Switch>
-      </MeetupContext.Provider>
+      </RegisterContext.Provider>
     )
   }
 }
