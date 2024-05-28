@@ -1,54 +1,89 @@
 import styled from 'styled-components'
 
-export const HomeContainer = styled.div`
+export const BgHome = styled.div`
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
 `
-
-export const HomeHeading = styled.h1`
+export const NotRegCont = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`
+export const NotRegHead = styled.h1`
   color: #334155;
-  font-size: 52px;
-  font-family: 'Roboto';
-`
-export const HomePara = styled.p`
-  color: #475569;
-  font-size: 22px;
-  font-family: 'Roboto';
-`
-
-export const Button = styled.button`
-  background-color: #3b82f6;
-  color: #ffffff;
-  font-family: 'Roboto';
-  border: none;
-  outline: none;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 6px;
-`
-
-export const Image = styled.img`
-  height: 350px;
-  width: 90%;
-  margin-top: 30px;
-`
-
-export const Name = styled.h1`
-  color: #2563eb;
-  font-size: 45px;
-  font-family: 'Roboto';
-`
-
-export const Topic = styled.p`
-  color: #334155;
-  font-size: 25px;
-  font-family: 'Roboto';
+  font-size: 20px;
+  margin: 0px;
   font-weight: bold;
+  margin-bottom: 5px;
+  @media (min-width: 768px) {
+    font-size: 36px;
+  }
+`
+export const NotRegPara = styled.p`
+  color: #475569;
+  font-size: 15px;
+  margin: 0px;
+  margin-bottom: 15px;
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
 `
 
-export default HomeContainer
+export const NotRegBtn = styled.button`
+  color: white;
+  background-color: #2563eb;
+  border: 0px;
+  border-radius: 5px;
+  height: 40px;
+  width: 100px;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+  @media (min-width: 768px) {
+    height: 50px;
+    width: 130px;
+    font-size: 20px;
+  }
+`
+export const RegDoneCont = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`
+export const RegDoneHead = styled.h1`
+  color: #2563eb;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 0px;
+  margin-bottom: 5px;
+  @media (min-width: 768px) {
+    font-size: 50px;
+  }
+`
+
+export const RegDonePara = styled.p`
+  color: #475569;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 0px;
+  margin-bottom: 5px;
+  @media (min-width: 768px) {
+    font-size: 30px;
+  }
+`
+export const HomeImg = styled.img`
+  margin-top: 20px;
+  height: 160px;
+  width: 280px;
+  @media (min-width: 768px) {
+    height: 350px;
+    width: 650px;
+  }
+`

@@ -1,17 +1,18 @@
+import {Component} from 'react'
 import Header from '../Header'
-
-import RegisterContext from '../../context/RegisterContext'
-
+import MeetupContext from '../../context/MeetupContext'
 import {
-  RegisterContainer,
-  RegisterImg,
-  Form,
-  RegisterHeading,
-  InputContainer,
-  Label,
-  Input,
-  Select,
-  RegisterButton,
+  BgReg,
+  RegCont,
+  RegImg,
+  RegForm,
+  RegHead,
+  InputCont,
+  InputLabel,
+  InputBox,
+  InputBoxSelect,
+  InputOption,
+  RegBtn,
   ErrorMsg,
 } from './styledComponents'
 
@@ -30,7 +31,7 @@ const topicsList = [
   },
   {
     id: 'FASHION_AND_BEAUTY',
-    displayText: 'Fashion and Learning',
+    displayText: 'Fashion and Beauty',
   },
   {
     id: 'GAMES',
@@ -38,87 +39,91 @@ const topicsList = [
   },
 ]
 
-const Register = props => (
-  <RegisterContext.Consumer>
-    {value => {
-      const {
-        name,
-        topic,
-        changeName,
-        changeTopic,
-        showError,
-        registerName,
-        updateError,
-      } = value
+class Register extends Component {
+  state = {
+    showErr: false,
+  }
 
-      const submitRegistration = event => {
-        event.preventDefault()
+  render() {
+    const {showErr} = this.state
 
-        if (name !== '' && topic !== '') {
-          const {history} = props
-          history.replace('/')
-          registerName()
-        } else {
-          updateError()
-        }
-      }
+    return (
+      <MeetupContext.Consumer>
+        {value => {
+          const {onRegistration, onChangeTopic, onChangeName, userName} = value
 
-      const onChangeName = event => {
-        changeName(event.target.value)
-      }
+          const onClickRegisterNow = event => {
+            event.preventDefault()
+            if (userName === '') {
+              this.setState({showErr: true})
+              return
+            }
 
-      const onChangeTopic = event => {
-        const topicId = event.target.value
-        const topicObj = topicsList.find(each => each.id === topicId)
-        const topicText = topicObj.displayText
-        changeTopic(topicText)
-        console.log(topicId, topicText, topic)
-      }
+            const {history} = this.props
+            history.replace('/')
+            onRegistration(true)
+          }
 
-      return (
-        <div>
-          <Header />
-          <div>
-            <RegisterContainer>
-              <RegisterImg
-                src="https://assets.ccbp.in/frontend/react-js/meetup/website-register-img.png"
-                alt="website register"
-              />
-              <Form onSubmit={submitRegistration}>
-                <RegisterHeading>Let us join</RegisterHeading>
-                <InputContainer>
-                  <Label htmlFor="name">NAME</Label>
-                  <Input
-                    id="name"
-                    value={name}
-                    type="text"
-                    onChange={onChangeName}
-                    placeholder="Your name"
+          const changeTopic = event => {
+            const userTopicId = event.target.value
+            const userTopicObj = topicsList.find(
+              eachOption => eachOption.id === userTopicId,
+            )
+            const topicText = userTopicObj.displayText
+            onChangeTopic(topicText)
+            console.log(topicText, 'Register')
+          }
+
+          const changeName = event => {
+            onChangeName(event.target.value)
+          }
+
+          return (
+            <>
+              <Header />
+              <BgReg>
+                <RegCont>
+                  <RegImg
+                    src="https://assets.ccbp.in/frontend/react-js/meetup/website-register-img.png"
+                    alt="website register"
                   />
-                </InputContainer>
-                <InputContainer>
-                  <Label htmlFor="topic">Topics</Label>
-                  <Select id="topic" value={topic} onChange={onChangeTopic}>
-                    {topicsList.map(each => (
-                      <option value={each.id} key={each.id}>
-                        {each.displayText}
-                      </option>
-                    ))}
-                  </Select>
-                </InputContainer>
-                <RegisterButton type="submit">Register Now</RegisterButton>
-                {showError === true ? (
-                  <ErrorMsg>Please enter your name</ErrorMsg>
-                ) : (
-                  ''
-                )}
-              </Form>
-            </RegisterContainer>
-          </div>
-        </div>
-      )
-    }}
-  </RegisterContext.Consumer>
-)
+                  <RegForm onSubmit={onClickRegisterNow}>
+                    <RegHead>Let us join</RegHead>
+                    <InputCont>
+                      <InputLabel htmlFor="name">NAME</InputLabel>
+                      <InputBox
+                        onChange={changeName}
+                        value={userName}
+                        placeholder="Your name"
+                        type="text"
+                        id="name"
+                      />
+                    </InputCont>
+                    <InputCont>
+                      <InputLabel htmlFor="topic">TOPICS</InputLabel>
+                      <InputBoxSelect onChange={changeTopic} id="topic">
+                        {topicsList.map(each => (
+                          <InputOption key={each.id} value={each.id}>
+                            {each.displayText}
+                          </InputOption>
+                        ))}
+                      </InputBoxSelect>
+                    </InputCont>
+                    <RegBtn type="submit">Register Now</RegBtn>
+                    {showErr && (
+                      <ErrorMsg className="ErrorMsg">
+                        Please enter your name
+                      </ErrorMsg>
+                    )}
+                  </RegForm>
+                </RegCont>
+              </BgReg>
+            </>
+          )
+        }}
+      </MeetupContext.Consumer>
+    )
+  }
+}
 
 export default Register

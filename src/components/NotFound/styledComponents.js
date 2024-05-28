@@ -1,27 +1,42 @@
 import styled from 'styled-components'
 
-export const NotFoundContainer = styled.div`
+export const BgNf = styled.div`
+  min-height: 90vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  justify-content: center;
+  text-align: center;
 `
-
-export const NotFoundHeading = styled.h1`
-  color: #64748b;
-  font-size: 32px;
-  font-family: 'Roboto';
-`
-export const NotFoundPara = styled.p`
-  color: #7b8794;
-  font-size: 14px;
-  font-family: 'Roboto';
-`
-
-export const Img = styled.img`
-  height: 250px;
+export const NfImg = styled.img`
+  height: 210px;
   width: 250px;
+  margin: 0px;
+  margin-bottom: 10px;
+  @media (min-width: 768px) {
+    height: 460px;
+    width: 550px;
+    margin-bottom: 20px;
+  }
 `
 
-export default NotFoundContainer
+export const NfHead = styled.h1`
+  color: #475569;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px;
+  margin-bottom: 5px;
+  @media (min-width: 768px) {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+`
+
+export const NfPara = styled.p`
+  color: #7b8794;
+  font-size: 15px;
+  margin: 0px;
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
+`

@@ -1,83 +1,52 @@
 import {Component} from 'react'
-
-import {Route, Switch} from 'react-router-dom'
-import Register from './components/Register'
+import {Switch, Route, Redirect} from 'react-router-dom'
 import Home from './components/Home'
-
+import Register from './components/Register'
 import NotFound from './components/NotFound'
-
-import RegisterContext from './context/RegisterContext'
-
+import MeetupContext from './context/MeetupContext'
 import './App.css'
-
-const topicsList = [
-  {
-    id: 'ARTS_AND_CULTURE',
-    displayText: 'Arts and Culture',
-  },
-  {
-    id: 'CAREER_AND_BUSINESS',
-    displayText: 'Career and Business',
-  },
-  {
-    id: 'EDUCATION_AND_LEARNING',
-    displayText: 'Education and Learning',
-  },
-  {
-    id: 'FASHION_AND_BEAUTY',
-    displayText: 'Fashion and Learning',
-  },
-  {
-    id: 'GAMES',
-    displayText: 'Games',
-  },
-]
 
 class App extends Component {
   state = {
-    name: '',
-    topic: 'Arts and Culture',
     isRegistered: false,
-    showError: false,
+    userName: '',
+    userTopic: '',
   }
 
-  changeName = name => {
-    this.setState({name})
+  onChangeName = userName => {
+    this.setState({userName})
   }
 
-  changeTopic = topic => {
-    this.setState({topic})
+  onChangeTopic = userTopic => {
+    this.setState({userTopic})
+    console.log(userTopic, 'App')
   }
 
-  registerName = () => {
-    this.setState({isRegistered: true})
-  }
-
-  updateError = () => {
-    this.setState({showError: true})
+  onRegistration = gotValue => {
+    this.setState({isRegistered: gotValue})
   }
 
   render() {
-    const {name, topic, isRegistered, showError} = this.state
+    const {userTopic, userName, isRegistered} = this.state
+
     return (
-      <RegisterContext.Provider
+      <MeetupContext.Provider
         value={{
-          name,
-          topic,
+          userName,
           isRegistered,
-          showError,
-          changeName: this.changeName,
-          changeTopic: this.changeTopic,
-          registerName: this.registerName,
-          updateError: this.updateError,
+          userTopic,
+          onRegistration: this.onRegistration,
+          onChangeTopic: this.onChangeTopic,
+          onChangeName: this.onChangeName,
         }}
       >
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
-          <NotFound />
+          <Route exact path="/bad-path" component={NotFound} />
+          <Redirect to="/bad-path" />
         </Switch>
-      </RegisterContext.Provider>
+      </MeetupContext.Provider>
     )
   }
 }

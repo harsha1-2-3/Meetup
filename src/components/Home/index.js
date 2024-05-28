@@ -1,62 +1,87 @@
-import {Link} from 'react-router-dom'
-
+import {Link, withRouter} from 'react-router-dom'
 import Header from '../Header'
-
-import RegisterContext from '../../context/RegisterContext'
-
+import MeetupContext from '../../context/MeetupContext'
 import {
-  HomeContainer,
-  HomeHeading,
-  HomePara,
-  Button,
-  Image,
-  Name,
-  Topic,
+  RegDoneCont,
+  RegDoneHead,
+  RegDonePara,
+  NotRegCont,
+  NotRegHead,
+  NotRegPara,
+  NotRegBtn,
+  BgHome,
+  HomeImg,
 } from './styledComponents'
 
 const Home = props => {
-  const onRegister = () => {
-    const {history} = props
-    history.replace('/register')
+  const renderRegisteredBox = () => (
+    <MeetupContext.Consumer>
+      {value => {
+        const {
+          userName,
+          userTopic,
+          onRegistration,
+          onChangeName,
+          onChangeTopic,
+        } = value
+
+        const clickedLogout = () => {
+          const {history} = props
+          history.replace('/register')
+          onRegistration(false)
+          onChangeName('')
+          onChangeTopic('ARTS_AND_CULTURE')
+        }
+
+        return (
+          <RegDoneCont>
+            <RegDoneHead>Hello {userName}</RegDoneHead>
+            <RegDonePara>Welcome to {userTopic}</RegDonePara>
+            <NotRegBtn type="button" onClick={clickedLogout}>
+              Logout
+            </NotRegBtn>
+          </RegDoneCont>
+        )
+      }}
+    </MeetupContext.Consumer>
+  )
+
+  const renderNotRegistered = () => (
+    <NotRegCont>
+      <NotRegHead>Welcome to Meetup</NotRegHead>
+      <NotRegPara>Please register for the topic</NotRegPara>
+      <Link to="/register">
+        <NotRegBtn type="button">Register</NotRegBtn>
+      </Link>
+    </NotRegCont>
+  )
+
+  const renderAllPages = isRegistered => {
+    if (isRegistered) {
+      return renderRegisteredBox()
+    }
+    return renderNotRegistered()
   }
 
   return (
-    <RegisterContext.Consumer>
+    <MeetupContext.Consumer>
       {value => {
-        const {isRegistered, name, topic} = value
-        console.log(isRegistered)
+        const {isRegistered} = value
         return (
-          <div>
+          <>
             <Header />
-
-            {isRegistered === true ? (
-              <HomeContainer>
-                <Name>Hello {name}</Name>
-                <Topic>Welcome to {topic}</Topic>
-                <Image
-                  src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
-                  alt="meetup"
-                />
-              </HomeContainer>
-            ) : (
-              <HomeContainer>
-                <HomeHeading>Welcome to Meetup</HomeHeading>
-                <HomePara>Please register for the topic</HomePara>
-                <Link to="/register">
-                  <Button onClick={onRegister}>Register</Button>
-                </Link>
-
-                <Image
-                  src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
-                  alt="meetup"
-                />
-              </HomeContainer>
-            )}
-          </div>
+            <BgHome>
+              {renderAllPages(isRegistered)}
+              <HomeImg
+                src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
+                alt="meetup"
+              />
+            </BgHome>
+          </>
         )
       }}
-    </RegisterContext.Consumer>
+    </MeetupContext.Consumer>
   )
 }
 
-export default Home
+export default withRouter(Home)
